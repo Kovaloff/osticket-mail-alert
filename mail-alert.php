@@ -45,12 +45,12 @@ class MailAlertPlugin extends Plugin {
 
         // Format the messages we'll send.
         $heading = sprintf('%s %s %s %.40s (%.40s) %s "%.40s"'
-                , __("New Ticket")
+                , __("Ticket")
                 , __("created")
-                , __("from")
+                , __("")
                 , $ticket->getName()->getFull()
                 , $ticket->getEmail()
-                , __("with subject")
+                , __("")
                 , $ticket->getSubject());
         $this->sendMailAlert($ticket, $heading, $plaintext);
     }
@@ -92,10 +92,10 @@ class MailAlertPlugin extends Plugin {
         $heading = sprintf('%s %s %s %.40s (%.40s) %s "%.40s"'
                 , __("Ticket")
                 , __("updated")
-                , __("from")
+                , __("")
                 , $ticket->getName()->getFull()
                 , $ticket->getEmail()
-                , __("with subject")
+                , __("")
                 , $ticket->getSubject());
         $this->sendMailAlert($ticket, $heading, $plaintext, 'warning');
     }
@@ -117,13 +117,13 @@ class MailAlertPlugin extends Plugin {
         // Format the messages we'll send.
         $heading = sprintf('%s %s %s %.40s (%.40s) %s "%.40s"'
                 , __("Ticket")
-                , __("flagged as overdue")
-                , __("from")
+                , __("overdue")
+                , __("")
                 , $ticket->getName()->getFull()
                 , $ticket->getEmail()
-                , __("with subject")
+                , __("")
                 , $ticket->getSubject());
-        $this->sendMailAlert($ticket, $heading, $plaintext);
+        $this->sendMailAlert($ticket, $heading, 'Ticket flagged as overdue');
     }
 
 
