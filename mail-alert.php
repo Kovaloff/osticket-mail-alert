@@ -139,7 +139,7 @@ class MailAlertPlugin extends Plugin {
      * @throws \Exception
      */
     function sendMailAlert(Ticket $ticket, $heading, $body, $colour = 'good') {
-        global $ost, $cfg;
+        global $ost, $cfg, $thisstaff;
         if (!$ost instanceof osTicket || !$cfg instanceof OsticketConfig) {
             error_log("Mail alert plugin called too early.");
             return;
@@ -173,7 +173,7 @@ class MailAlertPlugin extends Plugin {
         ];
         $formatted_message = $ticket->replaceVars($template, $custom_vars);
 
-        $payload = $formatted_message . '<h5>Url:</h5>'.$cfg->getUrl() . 'scp/tickets.php?id=' . $ticket->getId();
+        $payload = $formatted_message . '<h5>Staff:<h5>' . ($thisstaff ? $thisstaff->getUserName() : "") . '<h5>Url:</h5>'.$cfg->getUrl() . 'scp/tickets.php?id=' . $ticket->getId();
 
         // Format the payload:
         //$message = utf8_encode($payload);
